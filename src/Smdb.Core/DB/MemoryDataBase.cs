@@ -2,6 +2,8 @@ namespace Smdb.Core.Db;
 
 using Smdb.Core.Movies;
 
+using Smdb.Core.Actors;
+
 public class MemoryDatabase
 {
     public List<Movie> Movies { get; }
@@ -11,17 +13,21 @@ public class MemoryDatabase
     public MemoryDatabase()
     {
         Movies = [];
+        Actors = [];
 
         SeedMovies();
+        SeedActors();
 
         nextMovieId = Movies.Count;
+        nextActorId = Actors.Count;
     }
 
     private void SeedMovies()
     {
         Movies.AddRange(new Movie[]
         {
-            new Movie(1, "The Godfather", 1972, "A mafia patriarch hands the family empire to his reluctant son."), new Movie(2, "The Godfather Part II", 1974, "Michael consolidates power as flashbacks trace Vito Corleone’s rise."),
+            new Movie(1, "The Godfather", 1972, "A mafia patriarch hands the family empire to his reluctant son."), 
+            new Movie(2, "The Godfather Part II", 1974, "Michael consolidates power as flashbacks trace Vito Corleone’s rise."),
             new Movie(3, "The Dark Knight", 2008, "Batman faces the Joker, who pushes Gotham into chaos."),
             new Movie(4, "The Shawshank Redemption", 1994, "An innocent banker forms a life-saving friendship in prison."),
             new Movie(5, "Pulp Fiction", 1994, "Interlocking LA crime stories unfold with dark humor."),
@@ -75,5 +81,72 @@ public class MemoryDatabase
     public int NextMovieId()
     {
         return ++nextMovieId;
+    }
+
+    //actors
+
+     public List<Actor> Actors { get; }
+
+    private int nextActorId;
+
+    private void SeedActors()
+    {
+        Actors.AddRange(new Actor[]
+        {
+            new Actor(1, "Al Pacino", 1940, "American."), 
+            new Actor(2, "Robert De Niro", 1943, "American."),
+            new Actor(3, "Christian Bale", 1974, "British."),
+            new Actor(4, "Morgan Freeman", 1937, "American."),
+            new Actor(5, "Quentin Tarantino", 1963, "American."),
+            new Actor(6, "Liam Neeson", 1952, "British."),
+            new Actor(7, "Elijah Wood", 1981, "American."),
+            new Actor(8, "Edward Norton", 1969, "American."),
+            new Actor(9, "Tom Hanks", 1956, "American."),
+            new Actor(10, "Leonardo DiCaprio", 1974, "American."),
+            new Actor(11, "Keanu Reeves", 1964, "Canadian."),
+            new Actor(12, "Gwyneth Paltrow", 1972, "American."),
+            new Actor(13, "Ray Liotta", 1954, "American."),
+            new Actor(14, "Anthony Hopkins", 1937, "British-American."),
+            new Actor(15, "Mark Hamill", 1951, "American."),
+            new Actor(16, "Harrison Ford", 1942, "American."),
+            new Actor(17, "Matthew McConaughey", 1969, "American."),
+            new Actor(18, "Cho Yeo-jeong", 1981, "Korean."),
+            new Actor(19, "Rumi Hiiragi", 1987, "Japanese."),
+            new Actor(20, "Alice Braga", 1983, "Brazilian."),
+            new Actor(21, "Matt Damon", 1970, "American."),
+            new Actor(22, "Michael Clarke Duncan", 1957, "American."),
+            new Actor(23, "Russell Crowe", 1964, "New Zealander."),
+            new Actor(24, "Matthew Broderick", 1962, "American."),
+            new Actor(25, "Michael J. Fox", 1961, "American-Canadian."),
+            new Actor(26, "Vera Farmiga", 1973, "American."),
+            new Actor(27, "Miles Teller", 1987, "American."),
+            new Actor(28, "Hugh Jackman", 1968, "British-Australian."),
+            new Actor(29, "Kevin Spacey", 1959, "American."),
+            new Actor(30, "Edward Furlong", 1977, "American."),
+            new Actor(31, "Sigourney Weaver", 1949, "American."),
+            new Actor(32, "Carrie Henn", 1976, "American."),
+            new Actor(33, "Harrison Ford", 1942, "American."),
+            new Actor(34, "Martin Sheen", 1940, "American."),
+            new Actor(35, "Jack Nicholson", 1937, "American."),
+            new Actor(36, "Robert De Niro", 1943, "American."),
+            new Actor(37, "Kang Hye-jung", 1982, "Korean."),
+            new Actor(38, "Audrey Tautou", 1976, "French."),
+            new Actor(39, "Adrien Brody", 1973, "American."),
+            new Actor(40, "Mena Suvari", 1979, "American."),
+            new Actor(41, "Javier Bardem", 1969, "Spanish."),
+            new Actor(42, "Daniel Day-Lewis", 1957, "English."),
+            new Actor(43, "Tom Hardy", 1977, "English."),
+            new Actor(44, "Emma Stone", 1988, "American."),
+            new Actor(45, "Heath Ledger", 1979, "Australian."),
+            new Actor(46, "Robert Downey Jr.", 1965, "American."),
+            new Actor(47, "Scarlett Johansson", 1984, "American."),
+            new Actor(48, "Tim Allen", 1953, "American."),
+            new Actor(49, "Mary Gibbs", 1996, "American."),
+            new Actor(50, "Jesse Eisenberg", 1983, "American.")
+});
+    }
+    public int NextActorId()
+    {
+        return ++nextActorId;
     }
 }
