@@ -11,7 +11,7 @@ public class UsersController
 {
     private IUserService userService;
 
-    public UserController(IUserService userService)
+    public UsersController(IUserService userService)
     {
         this.userService = userService;
     }
@@ -69,7 +69,7 @@ public class UsersController
         int id = int.TryParse(uParams["id"]!, out int i) ? i : -1;
         var text = (string)props["req.text"]!;
         var user = JsonSerializer.Deserialize<User>(text, JsonSerializerOptions.Web);
-        var result = await userService.UpdateUser(id, movie!);
+        var result = await userService.UpdateUser(id, user!);
 
         await JsonUtils.SendResultResponse(req, res, props, result);
 
