@@ -9,5 +9,8 @@ public class Program
 
         ActorsApp actorsApp= new ActorsApp();
         await actorsApp.Start();
+
+        UsersApp usersApp= new UsersApp();
+        await usersApp.Start();
     }
 }
