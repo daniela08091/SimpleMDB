@@ -6,7 +6,7 @@ using Smdb.Core.Actors;
 using Smdb.Core.Db;
 
 
-public class App : HttpServer
+public class ActorsApp : HttpServer
 {
     public override void Init()
     {
