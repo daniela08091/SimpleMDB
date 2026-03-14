@@ -4,6 +4,9 @@ using Smdb.Core.Movies;
 
 using Smdb.Core.Actors;
 
+using Smdb.Core.Users;
+
+
 public class MemoryDatabase
 {
     public List<Movie> Movies { get; }
@@ -14,12 +17,15 @@ public class MemoryDatabase
     {
         Movies = [];
         Actors = [];
+        Users = [];
 
         SeedMovies();
         SeedActors();
+        SeedUsers();
 
         nextMovieId = Movies.Count;
         nextActorId = Actors.Count;
+        nextUserId = Users.Count;
     }
 
     private void SeedMovies()
@@ -85,7 +91,7 @@ public class MemoryDatabase
 
     //actors
 
-     public List<Actor> Actors { get; }
+    public List<Actor> Actors { get; }
 
     private int nextActorId;
 
@@ -148,5 +154,72 @@ public class MemoryDatabase
     public int NextActorId()
     {
         return ++nextActorId;
+    }
+
+    //users
+
+    public List<User> Users { get; }
+
+    private int nextUserId;
+
+    private void SeedUsers()
+    {
+        Users.AddRange(new User[]
+        {
+            new User(1, "Maria García", 1940, "mgarcía9867@interbayamon.edu"), 
+            new User(2, "González", 2003, "sgonzález2343@interbayamon.edu"),
+            new User(3, "Smith", 1974, "nsmith6545@interbayamon.edu"),
+            new User(4, "Wang", 2004, "wwang5456@interbayamon.edu"),
+            new User(5, "Mohamed", 1963, "hmohamed8032@interbayamon.edu"),
+            new User(6, "Kim", 1952, "ykim4970@interbayamon.edu"),
+            new User(7, "lopéz", 1981, "slopez4764@interbayamon.edu"),
+            new User(8, "Rodriguez", 1969, "jrodriguez9873@interbayamon.edu"),
+            new User(9, "González", 1956, "vgonzalez2254@interbayamon.edu"),
+            new User(10, "Rivera", 1974, "jrivera9873@interbayamon.edu"),
+            new User(11, "Rivera", 1964, "arivera0013@interbayamon.edu"),
+            new User(12, "Sanchez", 1972, "jsanchez6041@interbayamon.edu"),
+            new User(13, "Diaz", 1954, "cdiaz3983@interbayamon.edu"),
+            new User(14, "Narvaez", 1937, "inarvaez8865@interbayamon.edu"),
+            new User(15, "Rivera", 1999, "arivera6241@interbayamon.edu"),
+            new User(16, "García", 1942, "vgarcia4047@interbayamon.edu"),
+            new User(17, "Sanchez", 1969, "vsanchez5235@interbayamon.edu"),
+            new User(18, "Nieves", 1981, "cnieves4534@interbayamon.edu"),
+            new User(19, "Maldonado", 1994, "gmaldonado7098@interbayamon.edu"),
+            new User(20, "Diaz", 1983, "ddiaz6541@interbayamon.edu"),
+            new User(21, "Damon", 2008, "mdamon0808@interbayamon.edu"),
+            new User(22, "Mia Maldonado", 1957, "mmaldonado5791@interbayamon.edu"),
+            new User(23, "Rosa Vega", 1964, "rvega6914@interbayamon.edu"),
+            new User(24, "Marcos Acosta", 1962, "macosta9622@interbayamon.edu"),
+            new User(25, "Luz Nieves", 1961, "lnieves6191@interbayamon.edu"),
+            new User(26, "Margaita Lee", 1973, "lmargarita4373@interbayamon.edu"),
+            new User(27, "Mili Torres", 1987, "mtorres@9187@interbayamon"),
+            new User(28, "Grecia Martínez", 1968, "gmartinez8645@interbayamon.edu"),
+            new User(29, "Kevin Ford", 1959, "kford9564@interbayamon.edu"),
+            new User(30, "Edward de Jesus", 1977, "edejesus7766@interbayamon.edu"),
+            new User(31, "Sinny Weaver", 1949, "sweader9073@interbayamon.edu"),
+            new User(32, "Mozard Hernandez", 1976, "mhernandez6722@interbayamon.edu"),
+            new User(33, "Pablo Figueroa", 1942, "pfigueroa5362@interbayamon.edu"),
+            new User(34, "Alberto Landró", 1940, "alandro1290@interbayamon.edu"),
+            new User(35, "Jose Pardo", 1993, "jpardo5673@interbayamon.edu"),
+            new User(36, "Hiro Febus", 1943, "hfebus3782@interbayamon.edu"),
+            new User(37, "Elizabeth Perez", 1992, "eperez1039@interbayamon.edu"),
+            new User(38, "Naomi Alisea", 1976, "nalisea1973@interbayamon.edu"),
+            new User(39, "Barbara Martinez", 1973, "gmartinez1983@interbayamon.edu"),
+            new User(40, "Cristofer Gonzalez", 1979, "cgonzales8436@interbayamon.edu"),
+            new User(41, "Javier Melendez", 1969, "jmelendez2984@interbayamon.edu"),
+            new User(42, "Daniel Padró", 2003, "dpadro3476@interbayamon.edu"),
+            new User(43, "Tom Pagán", 1977, "tpagan8476@interbayamon.edu"),
+            new User(44, "Emma Collazo", 1988, "ecollazo3875@interbayamon.edu"),
+            new User(45, "Katerine Belmudez", 1999, "kbelmudez5683@interbayamon.edu"),
+            new User(46, "Robert Escobar", 1965, "rescobar0495@interbayamon.edu"),
+            new User(47, "Eileen Navarro", 1984, "enavarro4638@interbayamon.edu"),
+            new User(48, "Maryely Ramirez", 1995, "mramirez7358@interbayamon.edu"),
+            new user(49, "Isaac García", 1996, "igarcia9823@interbayamon.edu"),
+            new User(50, "Marissa Colón", 1983, "mcolon4678@interbayamon.edu")
+});
+    }
+    public int NextUserId()
+    {
+        return ++nextUserId;
     }
 }
