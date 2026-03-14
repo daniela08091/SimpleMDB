@@ -93,7 +93,7 @@ public class DefaultUserService : IUserService
 
         if (string.IsNullOrWhiteSpace(userData.UserName))
         {
-            return new Result<Movie>(
+            return new Result<User>(
             new Exception("Username is required and cannot be empty."),
             (int)HttpStatusCode.BadRequest);
         }
@@ -105,7 +105,7 @@ public class DefaultUserService : IUserService
             (int)HttpStatusCode.BadRequest);
         }
 
-        if (userData.Year_Birth < 1888 || userData.Year_Birth > DateTime.UtcNow.Year)
+        if (userData.YearBirth < 1888 || userData.YearBirth > DateTime.UtcNow.Year)
         {
             return new Result<User>(
             new Exception($"Year of Birth must be between 1888 and {DateTime.UtcNow.Year}."),

@@ -43,7 +43,7 @@ public class MemoryUserRepository : IUserRepository
         if (result != null)
         {
             result.UserName = newData.UserName;
-            result.Year_Birth = newData.Year_Birth;
+            result.YearBirth = newData.YearBirth;
             result.Email = newData.Email;
         }
 

@@ -214,7 +214,7 @@ public class MemoryDatabase
             new User(46, "Robert Escobar", 1965, "rescobar0495@interbayamon.edu"),
             new User(47, "Eileen Navarro", 1984, "enavarro4638@interbayamon.edu"),
             new User(48, "Maryely Ramirez", 1995, "mramirez7358@interbayamon.edu"),
-            new user(49, "Isaac García", 1996, "igarcia9823@interbayamon.edu"),
+            new User(49, "Isaac García", 1996, "igarcia9823@interbayamon.edu"),
             new User(50, "Marissa Colón", 1983, "mcolon4678@interbayamon.edu")
 });
     }
