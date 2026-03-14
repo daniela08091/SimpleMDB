@@ -23,7 +23,7 @@ public class ActorsController
     {
         int page = int.TryParse(req.QueryString["page"], out int p) ? p : 1;
         int size = int.TryParse(req.QueryString["size"], out int s) ? s : 9;
-        var result = await actorService.ReadActor(page, size);
+        var result = await actorService.ReadActors(page, size);
 
         await JsonUtils.SendPagedResultResponse(req, res, props, result, page, size);
 
