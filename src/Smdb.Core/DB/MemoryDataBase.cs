@@ -6,6 +6,7 @@ using Smdb.Core.Actors;
 
 using Smdb.Core.Users;
 
+using Smdb.Core.ActorMovie;
 
 public class MemoryDatabase
 {
