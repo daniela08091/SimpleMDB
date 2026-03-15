@@ -27,6 +27,7 @@ public class MemoryDatabase
         nextMovieId = Movies.Count;
         nextActorId = Actors.Count;
         nextUserId = Users.Count;
+        
     }
 
     private void SeedMovies()
