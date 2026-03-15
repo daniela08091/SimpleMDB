@@ -6,6 +6,7 @@ using Smdb.Core.Actors;
 
 using Smdb.Core.Users;
 
+using Smdb.Core.ActorMovie;
 
 public class MemoryDatabase
 {
@@ -26,6 +27,7 @@ public class MemoryDatabase
         nextMovieId = Movies.Count;
         nextActorId = Actors.Count;
         nextUserId = Users.Count;
+        
     }
 
     private void SeedMovies()
@@ -222,4 +224,11 @@ public class MemoryDatabase
     {
         return ++nextUserId;
     }
+
+
+
+
+
+
+    
 }
