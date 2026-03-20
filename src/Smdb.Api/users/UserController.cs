@@ -16,7 +16,7 @@ public class UsersController
         this.userService = userService;
     }
 
-    // curl -X GET "http://localhost:8080/api/v1/users?page=1&size=10"
+    // curl.exe -X GET "http://127.0.0.1:5000/api/v1/users?page=1&size=10"
 
     public async Task ReadUsers(HttpListenerRequest req, HttpListenerResponse res,
     Hashtable props, Func<Task> next)
@@ -29,7 +29,7 @@ public class UsersController
 
         await next();
     }
-    // curl -X POST "http://localhost:8080/api/v1/users" -H "Content-Type:application/json" -d "{ \"id\": -1, \"title\": \"Inception\", \"year\": 2010,\"description\": \"A skilled thief who enters dreams to steal secrets.\" }"
+    // curl.exe -X POST "http://127.0.0.1:5000/api/v1/users" -H "Content-Type:application/json" -d "{ \"id\": -1, \"title\": \"Inception\", \"year\": 2010,\"description\": \"A skilled thief who enters dreams to steal secrets.\" }"
 
     public async Task CreateUser(HttpListenerRequest req,
     HttpListenerResponse res, Hashtable props, Func<Task> next)
@@ -47,7 +47,7 @@ public class UsersController
 
 
 
-    // curl -X GET "http://localhost:8080/api/v1/users/1"
+    // curl.exe -X GET "http://127.0.0.1:5000/api/v1/users/1"
 
     public async Task ReadUser(HttpListenerRequest req, HttpListenerResponse res,
     Hashtable props, Func<Task> next)
@@ -60,7 +60,7 @@ public class UsersController
 
         await next();
     }
-    // curl -X PUT "http://localhost:8080/api/v1/users/1" -H "Content-Type: application/json" -d "{ \"title\": \"Joker 2\", \"year\": 2020, \"description\":\"A man that is a joke.\" }"
+    // curl.exe -X PUT "http://127.0.0.1:5000/api/v1/users/1" -H "Content-Type: application/json" -d "{ \"title\": \"Joker 2\", \"year\": 2020, \"description\":\"A man that is a joke.\" }"
 
     public async Task UpdateUser(HttpListenerRequest req,
     HttpListenerResponse res, Hashtable props, Func<Task> next)
@@ -75,7 +75,7 @@ public class UsersController
 
         await next();
     }
-    // curl -X DELETE http://localhost:8080/api/v1/users/1
+    // curl.exe -X DELETE http://127.0.0.1:5000/api/v1/users/1
 
     public async Task DeleteUser(HttpListenerRequest req,
     HttpListenerResponse res, Hashtable props, Func<Task> next)
