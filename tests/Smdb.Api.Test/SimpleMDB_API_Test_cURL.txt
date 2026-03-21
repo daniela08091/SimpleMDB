@@ -1,0 +1,37 @@
+# =========================
+# MOVIES - CRUD + LIST
+# =========================
+
+# ✅ LIST (correcto)
+curl.exe -X GET "http://127.0.0.1:5000/api/v1/movies?page=1&size=10"
+
+# ❌ LIST (error - parámetros inválidos)
+curl.exe -X GET "http://127.0.0.1:5000/api/v1/movies?page=abc&size=xyz"
+
+
+# ✅ CREATE (correcto)
+curl.exe -X POST "http://127.0.0.1:5000/api/v1/movies" -H "Content-Type: application/json" -d "{ \"id\": -1, \"title\": \"Inception\", \"year\": 2010, \"description\": \"A skilled thief who enters dreams.\" }"
+
+# ❌ CREATE (error - JSON mal formado)
+curl.exe -X POST "http://127.0.0.1:5000/api/v1/movies" -H "Content-Type: application/json" -d "{ title: Inception }"
+
+
+# ✅ READ ONE (correcto)
+curl.exe -X GET "http://127.0.0.1:5000/api/v1/movies/1"
+
+# ❌ READ ONE (error - id inexistente)
+curl.exe -X GET "http://127.0.0.1:5000/api/v1/movies/9999"
+
+
+# ✅ UPDATE (correcto)
+curl.exe -X PUT "http://127.0.0.1:5000/api/v1/movies/1" -H "Content-Type: application/json" -d "{ \"title\": \"Joker 2\", \"year\": 2020, \"description\": \"A man that is a joke.\" }"
+
+# ❌ UPDATE (error - sin body)
+curl.exe -X PUT "http://127.0.0.1:5000/api/v1/movies/1"
+
+
+# ✅ DELETE (correcto)
+curl.exe -X DELETE "http://127.0.0.1:5000/api/v1/movies/1"
+
+# ❌ DELETE (error - id inválido)
+curl.exe -X DELETE "http://127.0.0.1:5000/api/v1/movies/abc"

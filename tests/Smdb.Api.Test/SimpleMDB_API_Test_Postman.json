@@ -1,0 +1,59 @@
+{
+  "info": {
+    "name": "SimpleMDB API Test - Movies",
+    "_postman_id": "12345-abcde",
+    "description": "CRUD+L Movies",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "List Movies",
+      "request": {
+        "method": "GET",
+        "url": "http://127.0.0.1:5000/api/v1/movies?page=1&size=10"
+      }
+    },
+    {
+      "name": "Create Movie",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{ \"id\": -1, \"title\": \"Inception\", \"year\": 2010, \"description\": \"A skilled thief.\" }"
+        },
+        "url": "http://127.0.0.1:5000/api/v1/movies"
+      }
+    },
+    {
+      "name": "Get Movie",
+      "request": {
+        "method": "GET",
+        "url": "http://127.0.0.1:5000/api/v1/movies/1"
+      }
+    },
+    {
+      "name": "Update Movie",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{ \"title\": \"Updated Movie\", \"year\": 2022, \"description\": \"Updated desc\" }"
+        },
+        "url": "http://127.0.0.1:5000/api/v1/movies/1"
+      }
+    },
+    {
+      "name": "Delete Movie",
+      "request": {
+        "method": "DELETE",
+        "url": "http://127.0.0.1:5000/api/v1/movies/1"
+      }
+    }
+  ]
+}

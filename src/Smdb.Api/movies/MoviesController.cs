@@ -52,7 +52,7 @@ public class MoviesController
     public async Task ReadMovie(HttpListenerRequest req, HttpListenerResponse res,
     Hashtable props, Func<Task> next)
     {
-        var uParams = (NameValueCollection)props["req,params"]!;
+        var uParams = (NameValueCollection)props["req.params"]!;
         int id = int.TryParse(uParams["id"]!, out int i) ? i : -1;
         var result = await movieService.ReadMovie(id);
 
@@ -65,7 +65,7 @@ public class MoviesController
     public async Task UpdateMovie(HttpListenerRequest req,
     HttpListenerResponse res, Hashtable props, Func<Task> next)
     {
-        var uParams = (NameValueCollection)props["req,params"]!;
+        var uParams = (NameValueCollection)props["req.params"]!;
         int id = int.TryParse(uParams["id"]!, out int i) ? i : -1;
         var text = (string)props["req.text"]!;
         var movie = JsonSerializer.Deserialize<Movie>(text, JsonSerializerOptions.Web);
@@ -80,7 +80,7 @@ public class MoviesController
     public async Task DeleteMovie(HttpListenerRequest req,
     HttpListenerResponse res, Hashtable props, Func<Task> next)
     {
-        var uParams = (NameValueCollection)props["req,params"]!;
+        var uParams = (NameValueCollection)props["req.params"]!;
         int id = int.TryParse(uParams["id"]!, out int i) ? i : -1;
         var result = await movieService.DeleteMovie(id);
 
