@@ -16,9 +16,7 @@ public MoviesController(IMovieService movieService)
 this.movieService = movieService;
 }
 
-// <-- Rest of the code below goes here.
-
-// curl -X GET "http://localhost:8080/api/v1/movies?page=1&size=10"
+// curl -X GET "http://localhost:3000/api/v1/movies?page=1&size=10"
 public async Task ReadMovies(HttpListenerRequest req, HttpListenerResponse res, Hashtable props, Func<Task> next)
 {
 int page = int.TryParse(req.QueryString["page"], out int p) ? p : 1;
@@ -29,7 +27,7 @@ await JsonUtils.SendPagedResultResponse(req, res, props, result, page, size);
 await next();
 }
 
-// curl -X POST "http://localhost:8080/api/v1/movies" -H "Content-Type: application/json" -d "{ \"id\": -1, \"title\": \"Inception\", \"year\": 2010,\"description\": \"A skilled thief who enters dreams to steal secrets.\" }"
+// curl -X POST "http://localhost:3000/api/v1/movies" -H "Content-Type: application/json" -d "{ \"id\": -1, \"title\": \"Inception\", \"year\": 2010,\"description\": \"A skilled thief who enters dreams to steal secrets.\" }"
 public async Task CreateMovie(HttpListenerRequest req,
 HttpListenerResponse res, Hashtable props, Func<Task> next)
 {
@@ -40,7 +38,7 @@ await JsonUtils.SendResultResponse(req, res, props, result);
 await next();
 }
 
-// curl -X GET "http://localhost:8080/api/v1/movies/1"
+// curl -X GET "http://localhost:3000/api/v1/movies/1"
 public async Task ReadMovie(HttpListenerRequest req, HttpListenerResponse res, Hashtable props, Func<Task> next)
 {
 var uParams = (NameValueCollection) props["req.params"]!;
@@ -50,7 +48,7 @@ await JsonUtils.SendResultResponse(req, res, props, result);
 await next();
 }
 
-// curl -X PUT "http://localhost:8080/api/v1/movies/1" -H "Content-Type: application/json" -d "{ \"title\": \"Joker 2\", \"year\": 2020, \"description\":\"A man that is a joke.\" }"
+// curl -X PUT "http://localhost:3000/api/v1/movies/1" -H "Content-Type: application/json" -d "{ \"title\": \"Joker 2\", \"year\": 2020, \"description\":\"A man that is a joke.\" }"
 public async Task UpdateMovie(HttpListenerRequest req, HttpListenerResponse res, Hashtable props, Func<Task> next)
 {
 var uParams = (NameValueCollection) props["req.params"]!;
@@ -63,7 +61,7 @@ await JsonUtils.SendResultResponse(req, res, props, result);
 await next();
 }
 
-// curl -X DELETE http://localhost:8080/api/v1/movies/1
+// curl -X DELETE http://localhost:3000/api/v1/movies/1
 public async Task DeleteMovie(HttpListenerRequest req, HttpListenerResponse res, Hashtable props, Func<Task> next)
 {
 var uParams = (NameValueCollection) props["req.params"]!;
