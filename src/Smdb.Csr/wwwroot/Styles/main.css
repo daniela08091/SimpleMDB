@@ -1,0 +1,296 @@
+/* =========================
+   🎨 COLOR SYSTEM 
+========================= */
+
+:root {
+  --bg: #f4f7fb;
+  --surface: #ffffff;
+  --surface-soft: #eef2f7;
+
+  --primary: #4a6fa5;
+  --primary-dark: #2f4e78;
+  --accent: #7a9cc6;
+
+  --text: #1f2a44;
+  --text-muted: #6b7a90;
+
+  --border: #d6dde8;
+  --danger: #d9534f;
+  --success: #4caf93;
+  --warning: #e6a23c;
+
+  --radius: 12px;
+  --shadow: 0 6px 20px rgba(0,0,0,0.06);
+  --transition: 0.2s ease;
+}
+
+/* =========================
+   🌍 BASE
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+/* =========================
+   🧭 HEADER
+========================= */
+
+header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+header h1 {
+  margin: 0 0 0.5rem;
+  font-weight: 600;
+}
+
+/* =========================
+   🔗 NAV
+========================= */
+
+nav ul {
+  display: flex;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+/* =========================
+   🔘 BUTTONS
+========================= */
+
+.btn {
+  padding: 8px 14px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.btn:hover {
+  background: var(--surface-soft);
+}
+
+.btn.primary {
+  background: var(--primary);
+  color: white;
+  border: none;
+}
+
+.btn.primary:hover {
+  background: var(--primary-dark);
+}
+
+.btn.danger {
+  background: var(--danger);
+  color: white;
+  border: none;
+}
+
+.btn.danger:hover {
+  filter: brightness(0.9);
+}
+
+.btn.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* =========================
+   📦 LAYOUT
+========================= */
+
+.container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.grid {
+  display: grid;
+  gap: 16px;
+}
+
+/* =========================
+   🧾 FORMS
+========================= */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+input,
+textarea,
+select {
+  padding: 10px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  font-size: 14px;
+  transition: var(--transition);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(74, 111, 165, 0.15);
+}
+
+textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* =========================
+   📊 TABLE
+========================= */
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--surface);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.table th,
+.table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+.table th {
+  background: var(--surface-soft);
+  font-weight: 600;
+}
+
+/* =========================
+   🧩 CARDS
+========================= */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  background: var(--surface);
+  padding: 16px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+.row-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+/* =========================
+   📢 STATUS
+========================= */
+
+.status {
+  padding: 10px;
+  border-radius: var(--radius);
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.status.ok {
+  background: rgba(76, 175, 147, 0.15);
+  color: var(--success);
+}
+
+.status.err {
+  background: rgba(217, 83, 79, 0.15);
+  color: var(--danger);
+}
+
+.status.warn {
+  background: rgba(230, 162, 60, 0.15);
+  color: var(--warning);
+}
+
+/* =========================
+   🏷 BADGES
+========================= */
+
+.badge {
+  background: var(--accent);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+/* =========================
+   ♿ ACCESSIBILITY
+========================= */
+
+:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
+
+button,
+a {
+  min-height: 36px;
+}
+
+/* =========================
+   📱 RESPONSIVE
+========================= */
+
+@media (max-width: 600px) {
+  .container {
+    padding: 0.5rem;
+  }
+
+  nav ul {
+    flex-direction: column;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
