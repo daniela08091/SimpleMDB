@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Actor-Movie Relations</title>
+    <link rel="stylesheet" href="/styles/main.css" />
+    <script type="module" src="/scripts/actormovies/index.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1>Actor ↔ Movie</h1>
+        <nav>
+            <ul>
+                <li><a href="/" class="btn">Home</a></li>
+                <li><a href="/actormovies/add.html" class="btn primary">Add Relation</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div id="status"></div>
+        <div id="list" class="grid cards"></div>
+    </main>
+
+    <template id="relation-card">
+        <div class="card">
+            <p><strong>Actor:</strong> <span class="actor"></span></p>
+            <p><strong>Movie:</strong> <span class="movie"></span></p>
+
+            <div class="row-actions">
+                <a class="btn btn-view">View</a>
+                <a class="btn btn-edit">Edit</a>
+                <button class="btn danger btn-delete">Delete</button>
+            </div>
+        </div>
+    </template>
+</body>
+
+</html>

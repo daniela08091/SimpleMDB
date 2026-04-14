@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Actors</title>
+    <link rel="stylesheet" href="/styles/main.css" />
+    <script type="module" src="/scripts/actors/index.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1>Actors</h1>
+        <nav>
+            <ul>
+                <li><a href="/" class="btn">Home</a></li>
+                <li><a href="/actors/add.html" class="btn primary">Add Actor</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div id="status"></div>
+        <div id="actor-list" class="grid cards"></div>
+    </main>
+
+    <template id="actor-card">
+        <div class="card">
+            <h3 class="name"></h3>
+
+            <div class="row-actions">
+                <a class="btn btn-view">View</a>
+                <a class="btn btn-edit">Edit</a>
+                <button class="btn danger btn-delete">Delete</button>
+            </div>
+        </div>
+    </template>
+</body>
+
+</html>

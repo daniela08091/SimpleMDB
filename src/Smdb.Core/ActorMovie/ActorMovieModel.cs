@@ -2,17 +2,16 @@ namespace Smdb.Core.ActorMovies;
 
 public class ActorMovie
 {
+    public int Id { get; set; }   
     public int ActorId { get; set; }
     public int MovieId { get; set; }
 
-    public ActorMovie(int actorId, int movieId)
+    public ActorMovie() { }
+
+    public ActorMovie(int id, int actorId, int movieId)
     {
+        Id = id;
         ActorId = actorId;
         MovieId = movieId;
-    }
-
-    public override string ToString()
-    {
-        return $"ActorMovie[ActorId={ActorId}, MovieId={MovieId}]";
     }
 }

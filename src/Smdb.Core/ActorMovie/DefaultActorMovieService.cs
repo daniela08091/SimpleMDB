@@ -15,39 +15,103 @@ public class DefaultActorMovieService : IActorMovieService
         this.db = db;
     }
 
+    // =========================
+    // GET ALL
+    // =========================
     public async Task<Result<List<ActorMovie>>> GetAll()
     {
         var relations = await repository.GetAll();
 
-        var result = relations == null
+        return relations == null
             ? new Result<List<ActorMovie>>(
                 new Exception("Could not retrieve actor-movie relations."),
                 (int)HttpStatusCode.NotFound)
             : new Result<List<ActorMovie>>(relations, (int)HttpStatusCode.OK);
-
-        return result;
     }
 
+    // =========================
+    // GET BY ID
+    // =========================
+    public async Task<Result<ActorMovie>> GetById(int id)
+    {
+        var relation = await repository.GetById(id);
+
+        return relation == null
+            ? new Result<ActorMovie>(
+                new Exception($"Relation {id} not found."),
+                (int)HttpStatusCode.NotFound)
+            : new Result<ActorMovie>(relation, (int)HttpStatusCode.OK);
+    }
+
+    // =========================
+    // CREATE
+    // =========================
     public async Task<Result<ActorMovie>> Create(ActorMovie relation)
     {
         var validationResult = ValidateRelation(relation);
         if (validationResult != null)
-        {
             return validationResult;
-        }
 
         var created = await repository.Create(relation);
 
-        var result = created == null
+        return created == null
             ? new Result<ActorMovie>(
                 new Exception("Could not create relation."),
-                (int)HttpStatusCode.NotFound)
+                (int)HttpStatusCode.BadRequest)
             : new Result<ActorMovie>(created, (int)HttpStatusCode.Created);
-
-        return result;
     }
 
-    // 🔥 VALIDACIÓN IMPORTANTE
+    // =========================
+    // UPDATE
+    // =========================
+    public async Task<Result<ActorMovie>> Update(int id, ActorMovie relation)
+    {
+        var existing = await repository.GetById(id);
+
+        if (existing == null)
+        {
+            return new Result<ActorMovie>(
+                new Exception($"Relation {id} not found."),
+                (int)HttpStatusCode.NotFound);
+        }
+
+        var validationResult = ValidateRelation(relation);
+        if (validationResult != null)
+            return validationResult;
+
+        relation.Id = id;
+
+        var updated = await repository.Update(id, relation);
+
+        return updated == null
+            ? new Result<ActorMovie>(
+                new Exception("Could not update relation."),
+                (int)HttpStatusCode.BadRequest)
+            : new Result<ActorMovie>(updated, (int)HttpStatusCode.OK);
+    }
+
+    // =========================
+    // DELETE
+    // =========================
+    public async Task<Result<bool>> Delete(int id)
+    {
+        var existing = await repository.GetById(id);
+
+        if (existing == null)
+        {
+            return new Result<bool>(
+                new Exception($"Relation {id} not found."),
+                (int)HttpStatusCode.NotFound);
+        }
+
+        var deleted = await repository.Delete(id);
+
+        return new Result<bool>(deleted, (int)HttpStatusCode.OK);
+    }
+
+    // =========================
+    // VALIDATION
+    // =========================
     private Result<ActorMovie>? ValidateRelation(ActorMovie relation)
     {
         if (relation == null)
@@ -61,7 +125,7 @@ public class DefaultActorMovieService : IActorMovieService
         if (!actorExists)
         {
             return new Result<ActorMovie>(
-                new Exception($"Actor with id {relation.ActorId} does not exist."),
+                new Exception($"Actor {relation.ActorId} does not exist."),
                 (int)HttpStatusCode.BadRequest);
         }
 
@@ -69,7 +133,7 @@ public class DefaultActorMovieService : IActorMovieService
         if (!movieExists)
         {
             return new Result<ActorMovie>(
-                new Exception($"Movie with id {relation.MovieId} does not exist."),
+                new Exception($"Movie {relation.MovieId} does not exist."),
                 (int)HttpStatusCode.BadRequest);
         }
 
