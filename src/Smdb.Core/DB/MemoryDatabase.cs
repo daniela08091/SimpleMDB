@@ -15,13 +15,14 @@ public class MemoryDatabase
     private int nextMovieId;
     private int nextActorId;
     private int nextUserId;
+    private int nextActorMovieId; 
 
     public MemoryDatabase()
     {
-        Movies = [];
-        Actors = [];
-        Users = [];
-        ActorMovies = [];
+        Movies = new();
+        Actors = new();
+        Users = new();
+        ActorMovies = new();
 
         SeedMovies();
         SeedActors();
@@ -31,8 +32,13 @@ public class MemoryDatabase
         nextMovieId = Movies.Count;
         nextActorId = Actors.Count;
         nextUserId = Users.Count;
+
+        nextActorMovieId = ActorMovies.Count; 
     }
 
+    // =========================
+    // MOVIES
+    // =========================
     private void SeedMovies()
     {
         Movies.AddRange(new Movie[]
@@ -62,14 +68,14 @@ public class MemoryDatabase
             new Movie(23, "Gladiator", 2000, "A betrayed general becomes Rome’s fiercest arena fighter."),
             new Movie(24, "The Lion King", 1994, "An exiled lion cub returns to claim his destiny."),
             new Movie(25, "Back to the Future", 1985, "A teen time-travels and risks erasing his own existence."),
-            new Movie(26, "The Departed", 2006, "An infiltrator and a mole play cat-and - mouse in Boston."),
+            new Movie(26, "The Departed", 2006, "An infiltrator and a mole play cat-and-mouse in Boston."),
             new Movie(27, "Whiplash", 2014, "A jazz drummer endures a brutal mentor in pursuit of greatness."),
-            new Movie(28, "The Prestige", 2006, "Rival magicians wage a dangerous war of one - upmanship."),
+            new Movie(28, "The Prestige", 2006, "Rival magicians wage a dangerous war of one-upmanship."),
             new Movie(29, "The Usual Suspects", 1995, "A survivors’ tale hints at the legend of Keyser Söze."),
             new Movie(30, "Terminator 2: Judgment Day", 1991, "A reprogrammed cyborg protects the future leader of humanity."),
             new Movie(31, "Alien", 1979, "A crew is stalked by a lethal lifeform aboard a spaceship."),
-            new Movie(32, "Aliens", 1986, "Ripley returns to face a hive of xenomorphs on LV - 426."),
-            new Movie(33, "Blade Runner", 1982, "A detective hunts rogue androids in a neon - soaked future."),
+            new Movie(32, "Aliens", 1986, "Ripley returns to face a hive of xenomorphs on LV-426."),
+            new Movie(33, "Blade Runner", 1982, "A detective hunts rogue androids in a neon-soaked future."),
             new Movie(34, "Apocalypse Now", 1979, "A captain journeys upriver to terminate a renegade officer."),
             new Movie(35, "One Flew Over the Cuckoo's Nest", 1975, "A rebel patient challenges a tyrannical nurse in a psych ward."),
             new Movie(36, "Taxi Driver", 1976, "A disturbed NYC cabbie spirals toward violence."),
@@ -87,8 +93,12 @@ public class MemoryDatabase
             new Movie(48, "Toy Story", 1995, "Rivalry between a cowboy doll and a space ranger turns to friendship."),
             new Movie(49, "Inside Out", 2015, "A girl’s emotions guide her through a difficult move."),
             new Movie(50, "The Social Network", 2010, "Facebook’s founding sparks friendship and legal battles.")
-                    });
+        });
     }
+
+    // =========================
+    // ACTORS
+    // =========================
     private void SeedActors()
     {
         Actors.AddRange(new[]
@@ -111,6 +121,9 @@ public class MemoryDatabase
         });
     }
 
+    // =========================
+    // USERS
+    // =========================
     private void SeedUsers()
     {
         Users.AddRange(new[]
@@ -128,29 +141,39 @@ public class MemoryDatabase
         });
     }
 
+    // =========================
+    // ACTOR MOVIES (FIXED)
+    // =========================
     private void SeedActorMovies()
     {
         ActorMovies.AddRange(new[]
         {
-            new ActorMovie(1,1),
-            new ActorMovie(2,2),
-            new ActorMovie(3,3),
-            new ActorMovie(4,3),
-            new ActorMovie(5,10),
-            new ActorMovie(6,8),
-            new ActorMovie(7,9),
-            new ActorMovie(8,4),
-            new ActorMovie(9,11),
-            new ActorMovie(10,17),
-            new ActorMovie(11,45),
-            new ActorMovie(12,23),
-            new ActorMovie(13,44),
-            new ActorMovie(14,44),
-            new ActorMovie(15,46)
+            new ActorMovie(1, 1, 1),
+            new ActorMovie(2, 2, 2),
+            new ActorMovie(3, 3, 3),
+            new ActorMovie(4, 4, 3),
+            new ActorMovie(5, 5, 10),
+            new ActorMovie(6, 6, 8),
+            new ActorMovie(7, 7, 9),
+            new ActorMovie(8, 8, 4),
+            new ActorMovie(9, 9, 11),
+            new ActorMovie(10, 10, 17),
+            new ActorMovie(11, 11, 45),
+            new ActorMovie(12, 12, 23),
+            new ActorMovie(13, 13, 44),
+            new ActorMovie(14, 14, 44),
+            new ActorMovie(15, 15, 46),
+            new ActorMovie(16, 1, 7),
+            new ActorMovie(17, 3, 9)
         });
     }
 
+    // =========================
+    // IDS
+    // =========================
     public int NextMovieId() => ++nextMovieId;
     public int NextActorId() => ++nextActorId;
     public int NextUserId() => ++nextUserId;
+
+    public int NextActorMovieId() => ++nextActorMovieId; 
 }

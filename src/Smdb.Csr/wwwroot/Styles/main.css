@@ -1,293 +1,324 @@
-/* =========================
-   🎨 COLOR SYSTEM 
-========================= */
+/* ================================
+   THEME: Soft Summer × Cool Winter
+   Elegant Cinematic UI System
+================================== */
 
 :root {
-  --bg: #f4f7fb;
-  --surface: #ffffff;
-  --surface-soft: #eef2f7;
+  /* Base palette */
+  --bg: #0f172a;            /* deep navy */
+  --bg-soft: #111c33;
+  --surface: #172554;       /* muted indigo */
+  --surface-2: #1e2b4a;
 
-  --primary: #4a6fa5;
-  --primary-dark: #2f4e78;
-  --accent: #7a9cc6;
+  --text: #e5e7eb;          /* soft white */
+  --text-muted: #aab4c4;
 
-  --text: #1f2a44;
-  --text-muted: #6b7a90;
+  /* Accent palette */
+  --primary: #7dd3fc;       /* soft cyan */
+  --primary-2: #a5b4fc;     /* lavender blue */
+  --secondary: #94a3b8;     /* cool gray */
+  --accent: #fbcfe8;        /* soft pink frost */
 
-  --border: #d6dde8;
-  --danger: #d9534f;
-  --success: #4caf93;
-  --warning: #e6a23c;
+  /* Status */
+  --success: #86efac;
+  --warning: #fde68a;
+  --danger: #fb7185;
 
-  --radius: 12px;
-  --shadow: 0 6px 20px rgba(0,0,0,0.06);
-  --transition: 0.2s ease;
+  /* UI */
+  --border: rgba(255,255,255,0.08);
+  --shadow: 0 10px 30px rgba(0,0,0,0.35);
+  --radius: 16px;
+  --radius-sm: 10px;
+
+  --glass: rgba(255,255,255,0.06);
 }
 
-/* =========================
-   🌍 BASE
-========================= */
+/* ================================
+   RESET
+================================== */
 
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  font-family: "Inter", system-ui, sans-serif;
-  background: var(--bg);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  background: radial-gradient(1200px 600px at 20% 0%, #1b2a4a 0%, var(--bg) 55%);
   color: var(--text);
-  line-height: 1.5;
+  line-height: 1.6;
+  min-height: 100vh;
 }
 
-/* =========================
-   🧭 HEADER
-========================= */
+/* ================================
+   TYPOGRAPHY
+================================== */
+
+h1, h2, h3 {
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+p {
+  color: var(--text-muted);
+}
+
+/* ================================
+   LAYOUT
+================================== */
+
+.container {
+  width: min(1100px, 92%);
+  margin: 2rem auto;
+}
+
+main {
+  padding: 1rem 0;
+}
+
+/* ================================
+   HEADER + NAV
+================================== */
 
 header {
-  background: var(--surface);
+  background: linear-gradient(90deg, var(--surface), var(--bg-soft));
+  padding: 1.2rem 2rem;
   border-bottom: 1px solid var(--border);
-  padding: 1.5rem;
   box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 header h1 {
-  margin: 0 0 0.5rem;
-  font-weight: 600;
+  font-size: 1.6rem;
 }
-
-/* =========================
-   🔗 NAV
-========================= */
 
 nav ul {
-  display: flex;
-  gap: 10px;
-  padding: 0;
-  margin: 0;
   list-style: none;
+  display: flex;
+  gap: 0.75rem;
   flex-wrap: wrap;
+  margin-top: 0.8rem;
 }
 
-/* =========================
-   🔘 BUTTONS
-========================= */
-
-.btn {
-  padding: 8px 14px;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  background: var(--surface);
-  color: var(--text);
-  cursor: pointer;
+nav a {
   text-decoration: none;
-  transition: var(--transition);
 }
 
-.btn:hover {
-  background: var(--surface-soft);
+/* ================================
+   BUTTON SYSTEM
+================================== */
+
+button, .btn, a.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+
+  padding: 0.55rem 1rem;
+  border-radius: var(--radius-sm);
+
+  border: 1px solid var(--border);
+  background: var(--glass);
+  color: var(--text);
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+button:hover, .btn:hover {
+  transform: translateY(-2px);
+  border-color: var(--primary);
+  box-shadow: 0 8px 18px rgba(125, 211, 252, 0.15);
 }
 
 .btn.primary {
-  background: var(--primary);
-  color: white;
+  background: linear-gradient(135deg, var(--primary), var(--primary-2));
+  color: #0b1020;
   border: none;
-}
-
-.btn.primary:hover {
-  background: var(--primary-dark);
-}
-
-.btn.danger {
-  background: var(--danger);
-  color: white;
-  border: none;
-}
-
-.btn.danger:hover {
-  filter: brightness(0.9);
-}
-
-.btn.disabled {
-  opacity: 0.5;
-  pointer-events: none;
-}
-
-/* =========================
-   📦 LAYOUT
-========================= */
-
-.container {
-  max-width: 900px;
-  margin: 2rem auto;
-  padding: 1rem;
-}
-
-.grid {
-  display: grid;
-  gap: 16px;
-}
-
-/* =========================
-   🧾 FORMS
-========================= */
-
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-input,
-textarea,
-select {
-  padding: 10px;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  background: var(--surface);
-  font-size: 14px;
-  transition: var(--transition);
-}
-
-input:focus,
-textarea:focus,
-select:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 2px rgba(74, 111, 165, 0.15);
-}
-
-textarea {
-  min-height: 80px;
-  resize: vertical;
-}
-
-.form-actions {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-/* =========================
-   📊 TABLE
-========================= */
-
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  background: var(--surface);
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: var(--shadow);
-}
-
-.table th,
-.table td {
-  padding: 12px;
-  border-bottom: 1px solid var(--border);
-  text-align: left;
-}
-
-.table th {
-  background: var(--surface-soft);
   font-weight: 600;
 }
 
-/* =========================
-   🧩 CARDS
-========================= */
+.btn.primary:hover {
+  filter: brightness(1.05);
+}
+
+.btn.danger {
+  background: rgba(251, 113, 133, 0.12);
+  border: 1px solid rgba(251, 113, 133, 0.4);
+  color: var(--danger);
+}
+
+.btn.danger:hover {
+  background: rgba(251, 113, 133, 0.2);
+}
+
+/* ================================
+   FORMS
+================================== */
+
+form {
+  background: var(--glass);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 0.65rem 0.8rem;
+  margin-top: 0.3rem;
+  margin-bottom: 1rem;
+
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+
+  background: rgba(15, 23, 42, 0.6);
+  color: var(--text);
+
+  outline: none;
+  transition: 0.2s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(125, 211, 252, 0.15);
+}
+
+/* ================================
+   TABLES
+================================== */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--glass);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+th, td {
+  padding: 0.9rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+th {
+  color: var(--text-muted);
+  font-weight: 500;
+  width: 140px;
+}
+
+/* ================================
+   CARDS (MOVIES)
+================================== */
 
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 16px;
+  gap: 1rem;
 }
 
 .card {
-  background: var(--surface);
-  padding: 16px;
+  background: linear-gradient(180deg, var(--surface), rgba(255,255,255,0.03));
+  border: 1px solid var(--border);
   border-radius: var(--radius);
+  padding: 1rem;
   box-shadow: var(--shadow);
-  transition: var(--transition);
+  transition: transform 0.25s ease;
 }
 
 .card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
 }
 
 .card h3 {
-  margin-top: 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.1rem;
 }
 
 .row-actions {
   display: flex;
-  gap: 8px;
-  margin-top: 10px;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
 }
 
-/* =========================
-   📢 STATUS
-========================= */
-
-.status {
-  padding: 10px;
-  border-radius: var(--radius);
-  margin-bottom: 10px;
-  font-size: 14px;
-}
-
-.status.ok {
-  background: rgba(76, 175, 147, 0.15);
-  color: var(--success);
-}
-
-.status.err {
-  background: rgba(217, 83, 79, 0.15);
-  color: var(--danger);
-}
-
-.status.warn {
-  background: rgba(230, 162, 60, 0.15);
-  color: var(--warning);
-}
-
-/* =========================
-   🏷 BADGES
-========================= */
+/* ================================
+   BADGES
+================================== */
 
 .badge {
-  background: var(--accent);
-  color: white;
-  padding: 4px 8px;
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
   border-radius: 999px;
-  font-size: 12px;
+  font-size: 0.75rem;
+  background: rgba(148, 163, 184, 0.15);
+  color: var(--text-muted);
 }
 
-/* =========================
-   ♿ ACCESSIBILITY
-========================= */
+/* ================================
+   STATUS MESSAGES
+================================== */
 
-:focus-visible {
-  outline: 3px solid var(--primary);
-  outline-offset: 2px;
+#status, .status {
+  margin: 1rem 0;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  background: rgba(148, 163, 184, 0.12);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
 }
 
-button,
+/* ================================
+   LINKS (fallback)
+================================== */
+
 a {
-  min-height: 36px;
+  color: var(--primary);
 }
 
-/* =========================
-   📱 RESPONSIVE
-========================= */
+a:hover {
+  color: var(--primary-2);
+}
 
-@media (max-width: 600px) {
-  .container {
-    padding: 0.5rem;
+/* ================================
+   CONTROLS (pagination)
+================================== */
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+/* ================================
+   RESPONSIVE
+================================== */
+
+@media (max-width: 768px) {
+  header {
+    padding: 1rem;
   }
 
   nav ul {
     flex-direction: column;
+    gap: 0.5rem;
   }
 
   .cards {

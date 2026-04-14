@@ -3,30 +3,31 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Actors</title>
+    <title>Actor-Movie Relations</title>
     <link rel="stylesheet" href="/styles/main.css" />
-    <script type="module" src="/scripts/actors/index.js" defer></script>
+    <script type="module" src="/scripts/actormovies/index.js" defer></script>
 </head>
 
 <body>
     <header>
-        <h1>Actors</h1>
+        <h1>Actor ↔ Movie</h1>
         <nav>
             <ul>
                 <li><a href="/" class="btn">Home</a></li>
-                <li><a href="/actors/add.html" class="btn primary">Add Actor</a></li>
+                <li><a href="/actormovies/add.html" class="btn primary">Add Relation</a></li>
             </ul>
         </nav>
     </header>
 
     <main class="container">
         <div id="status"></div>
-        <div id="actor-list" class="grid cards"></div>
+        <div id="list" class="grid cards"></div>
     </main>
 
-    <template id="actor-card">
+    <template id="relation-card">
         <div class="card">
-            <h3 class="name"></h3>
+            <p><strong>Actor:</strong> <span class="actor"></span></p>
+            <p><strong>Movie:</strong> <span class="movie"></span></p>
 
             <div class="row-actions">
                 <a class="btn btn-view">View</a>

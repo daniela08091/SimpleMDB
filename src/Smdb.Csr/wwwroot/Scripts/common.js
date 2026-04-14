@@ -56,3 +56,4 @@ export function captureActorMovieForm(form) {
     const movieId = Number(form.movieId.value);
     return { actorId, movieId };
 }
+

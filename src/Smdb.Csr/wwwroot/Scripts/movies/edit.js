@@ -1,5 +1,6 @@
 import { $, apiFetch, renderStatus, getQueryParam, captureMovieForm } from
     '/scripts/common.js';
+
 (async function initMovieEdit() {
     const id = getQueryParam('id');
     const form = $('#movie-form');
@@ -40,7 +41,7 @@ import { $, apiFetch, renderStatus, getQueryParam, captureMovieForm } from
                 body: JSON.stringify(payload),
             });
             renderStatus(statusEl, 'ok',
-                `Updated movie #${updated.id} "${updated.title}" (${updated.year})).`);
+                `Updated movie #${updated.id} "${updated.title}" (${updated.year}).`);
         } catch (err) {
             renderStatus(statusEl, 'err', `Update failed: ${err.message}`);
         }

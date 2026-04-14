@@ -2,31 +2,30 @@
 <html>
 
 <head>
+    <meta charset="utf-8" />
     <title>View User</title>
+    <link rel="stylesheet" href="/styles/main.css" />
     <script type="module" src="/scripts/users/view.js" defer></script>
 </head>
 
 <body>
-    <h1>User</h1>
+    <header>
+        <h1>User Details</h1>
+    </header>
 
-    <div id="status"></div>
+    <main class="container">
+        <div id="status"></div>
 
-    <table>
-        <tr>
-            <th>ID</th>
-            <td id="user-id"></td>
-        </tr>
-        <tr>
-            <th>Name</th>
-            <td id="user-name"></td>
-        </tr>
-        <tr>
-            <th>Email</th>
-            <td id="user-email"></td>
-        </tr>
-    </table>
+        <table>
+            <tr><th>ID</th><td id="user-id"></td></tr>
+            <tr><th>Name</th><td id="user-name"></td></tr>
+            <tr><th>Email</th><td id="user-email"></td></tr>
+        </table>
 
-    <a id="edit-link">Edit</a>
+        <div class="row-actions" style="margin-top:1rem;">
+            <a id="edit-link" class="btn primary">Edit</a>
+        </div>
+    </main>
 </body>
 
 </html>

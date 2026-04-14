@@ -1,7 +1,27 @@
-<form id="user-form">
-    <input name="name" placeholder="Name" required />
-    <input name="email" placeholder="Email" required />
-    <button>Create</button>
-</form>
-<div id="status"></div>
-<script type="module" src="/scripts/users/add.js"></script>
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Add User</title>
+    <link rel="stylesheet" href="/styles/main.css" />
+    <script type="module" src="/scripts/users/add.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1>Add User</h1>
+    </header>
+
+    <main class="container">
+        <div id="status"></div>
+
+        <form id="user-form">
+            <input name="name" placeholder="Name" required />
+            <input name="email" placeholder="Email" required />
+            <button class="btn primary">Create</button>
+        </form>
+    </main>
+</body>
+
+</html>

@@ -1,5 +1,6 @@
 import { $, apiFetch, renderStatus, captureUserForm } from '/scripts/common.js';
 
+
 (async function () {
     const form = $('#user-form');
     const status = $('#status');

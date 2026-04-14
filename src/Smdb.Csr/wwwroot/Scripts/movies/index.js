@@ -1,5 +1,7 @@
+
 import { $, apiFetch, renderStatus, clearChildren, getQueryParam } from
     '/scripts/common.js';
+
 (async function initMoviesIndex() {
     const page = Math.max(1, Number(getQueryParam('page') ||
         localStorage.getItem('page') || '1'));

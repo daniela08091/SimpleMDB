@@ -1,5 +1,6 @@
 import { $, apiFetch, renderStatus, getQueryParam } from '/scripts/common.js';
 
+
 (async function () {
     const id = getQueryParam('id');
     const status = $('#status');

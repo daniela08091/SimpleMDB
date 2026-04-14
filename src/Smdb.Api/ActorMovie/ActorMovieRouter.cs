@@ -8,7 +8,13 @@ public class ActorMoviesRouter : HttpRouter
     {
         UseParametrizedRouteMatching();
 
+        // CRUD COMPLETO
         MapGet("/", controller.GetAll);
+        MapGet("/{id}", controller.GetById);
+
         MapPost("/", HttpUtils.ReadRequestBodyAsText, controller.Create);
+        MapPut("/{id}", HttpUtils.ReadRequestBodyAsText, controller.Update);
+
+        MapDelete("/{id}", controller.Delete);
     }
 }
