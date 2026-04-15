@@ -1,12 +1,18 @@
+//add.js
 import { $, apiFetch, renderStatus, captureMovieForm } from '/scripts/common.js';
 
 (async function initMovieAdd() {
+
     const form = $('#movie-form');
     const statusEl = $('#status');
+
     renderStatus(statusEl, 'ok', 'New movie. You can edit and save.');
+
     form.addEventListener('submit', async (ev) => {
         ev.preventDefault();
         const payload = captureMovieForm(form);
+
+
         // Input validation and feedback goes here. For example:
         //
         // if(payload.title.length > 256) {
@@ -16,13 +22,17 @@ import { $, apiFetch, renderStatus, captureMovieForm } from '/scripts/common.js'
         // } else if (...) {
         // ...
         // }
+
+
         try {
-            const created = await apiFetch(
-                '/movies', { method: 'POST', body: JSON.stringify(payload) });
-            renderStatus(statusEl, 'ok',
-                `Created movie #${created.id} "${created.title}" (${created.year}).`);
+
+            const created = await apiFetch('/movies', { method: 'POST', body: JSON.stringify(payload) });
+            renderStatus(statusEl, 'ok', `Created movie #${created.id} "${created.title}" (${created.year}).`);
             form.reset();
-        } catch (err) {
+
+        }
+
+        catch (err) {
             renderStatus(statusEl, 'err', `Create failed: ${err.message}`);
         }
     });

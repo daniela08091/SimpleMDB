@@ -13,22 +13,23 @@ import { $, apiFetch, renderStatus } from '/scripts/common.js';
         for (const u of data.data) {
             const node = template.content.cloneNode(true);
 
-            // DATA
+      
             node.querySelector('.name').textContent = u.name;
             node.querySelector('.email').textContent = u.email;
 
-            // VIEW
+       
             const viewBtn = node.querySelector('.btn-view');
             viewBtn.href = `/users/view.html?id=${u.id}`;
 
-            // EDIT
+         
             const editBtn = node.querySelector('.btn-edit');
             editBtn.href = `/users/edit.html?id=${u.id}`;
 
-            // DELETE
+        
             const deleteBtn = node.querySelector('.btn-delete');
             deleteBtn.addEventListener('click', async () => {
                 const ok = confirm(`Delete user "${u.name}"?`);
+                
                 if (!ok) return;
 
                 try {

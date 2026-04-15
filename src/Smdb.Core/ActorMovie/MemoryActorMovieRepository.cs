@@ -11,55 +11,46 @@ public class MemoryActorMovieRepository : IActorMovieRepository
         this.db = db;
     }
 
-    // =====================
-    // GET ALL
-    // =====================
-    public async Task<List<ActorMovie>> GetAll()
+    public async Task<List<ActorMovie>> ReadAll()
     {
         return await Task.FromResult(db.ActorMovies);
     }
 
-    // =====================
-    // GET BY ID
-    // =====================
-    public async Task<ActorMovie?> GetById(int id)
+    public async Task<ActorMovie?> Read(int id)
     {
-        var item = db.ActorMovies.FirstOrDefault(x => x.Id == id);
-        return await Task.FromResult(item);
+        var result = db.ActorMovies.FirstOrDefault(x => x.Id == id);
+        return await Task.FromResult(result);
     }
 
-    // =====================
-    // CREATE
-    // =====================
-    public async Task<ActorMovie> Create(ActorMovie relation)
+    public async Task<ActorMovie?> Create(ActorMovie actorMovie)
     {
-        db.ActorMovies.Add(relation);
-        return await Task.FromResult(relation);
+        actorMovie.Id = db.NextActorMovieId();
+        db.ActorMovies.Add(actorMovie);
+        return await Task.FromResult(actorMovie);
     }
 
-    // =====================
-    // UPDATE
-    // =====================
-    public async Task<ActorMovie?> Update(int id, ActorMovie relation)
+    public async Task<ActorMovie?> Update(int id, ActorMovie newData)
     {
-        var item = db.ActorMovies.FirstOrDefault(x => x.Id == id);
-        if (item == null) return null;
+        var existing = db.ActorMovies.FirstOrDefault(x => x.Id == id);
 
-        item.ActorId = relation.ActorId;
-        item.MovieId = relation.MovieId;
+        if (existing != null)
+        {
+            existing.ActorId = newData.ActorId;
+            existing.MovieId = newData.MovieId;
+        }
 
-        return await Task.FromResult(item);
+        return await Task.FromResult(existing);
     }
 
-    // =====================
-    // DELETE
-    // =====================
-    public async Task<bool> Delete(int id)
+    public async Task<ActorMovie?> Delete(int id)
     {
-        var item = db.ActorMovies.FirstOrDefault(x => x.Id == id);
-        if (item == null) return false;
+        var existing = db.ActorMovies.FirstOrDefault(x => x.Id == id);
 
-        db.ActorMovies.Remove(item);
-        return await Task.FromResult(true);
+        if (existing != null)
+        {
+            db.ActorMovies.Remove(existing);
+        }
+
+        return await Task.FromResult(existing);
     }
 }

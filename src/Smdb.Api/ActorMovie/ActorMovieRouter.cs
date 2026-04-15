@@ -1,6 +1,6 @@
-namespace Smdb.Api.ActorMovies;
-
 using Shared.Http;
+
+namespace Smdb.Api.ActorMovies;
 
 public class ActorMoviesRouter : HttpRouter
 {
@@ -8,13 +8,12 @@ public class ActorMoviesRouter : HttpRouter
     {
         UseParametrizedRouteMatching();
 
-        // CRUD COMPLETO
         MapGet("/", controller.GetAll);
-        MapGet("/{id}", controller.GetById);
-
         MapPost("/", HttpUtils.ReadRequestBodyAsText, controller.Create);
-        MapPut("/{id}", HttpUtils.ReadRequestBodyAsText, controller.Update);
+        MapDelete("/:id", controller.Delete);
 
-        MapDelete("/{id}", controller.Delete);
+        // RELACIONES
+        MapGet("/movie/:movieId", controller.GetActorsByMovie);
+        MapGet("/actor/:actorId", controller.GetMoviesByActor);
     }
 }

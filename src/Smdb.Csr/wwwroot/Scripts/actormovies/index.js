@@ -24,18 +24,12 @@ import { $, apiFetch, renderStatus } from '/scripts/common.js';
 
             const node = template.content.cloneNode(true);
 
-            // 👇 FIX IMPORTANTE: fallback seguro
             node.querySelector('.actor').textContent =
                 actor?.name ?? `Actor #${r.actorId}`;
 
             node.querySelector('.movie').textContent =
                 movie?.title ?? `Movie #${r.movieId}`;
 
-            node.querySelector('.btn-view').href =
-                `/actormovies/view.html?id=${r.id}`;
-
-            node.querySelector('.btn-edit').href =
-                `/actormovies/edit.html?id=${r.id}`;
 
             node.querySelector('.btn-delete').addEventListener('click', async () => {
                 if (!confirm('Delete this relation?')) return;

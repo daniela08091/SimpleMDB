@@ -36,9 +36,8 @@ public class MemoryDatabase
         nextActorMovieId = ActorMovies.Count; 
     }
 
-    // =========================
     // MOVIES
-    // =========================
+   
     private void SeedMovies()
     {
         Movies.AddRange(new Movie[]
@@ -96,9 +95,9 @@ public class MemoryDatabase
         });
     }
 
-    // =========================
+
     // ACTORS
-    // =========================
+  
     private void SeedActors()
     {
         Actors.AddRange(new[]
@@ -121,9 +120,8 @@ public class MemoryDatabase
         });
     }
 
-    // =========================
     // USERS
-    // =========================
+
     private void SeedUsers()
     {
         Users.AddRange(new[]
@@ -141,33 +139,54 @@ public class MemoryDatabase
         });
     }
 
-    // =========================
-    // ACTOR MOVIES (FIXED)
-    // =========================
-    private void SeedActorMovies()
-    {
-        ActorMovies.AddRange(new[]
-        {
-            new ActorMovie(1, 1, 1),
-            new ActorMovie(2, 2, 2),
-            new ActorMovie(3, 3, 3),
-            new ActorMovie(4, 4, 3),
-            new ActorMovie(5, 5, 10),
-            new ActorMovie(6, 6, 8),
-            new ActorMovie(7, 7, 9),
-            new ActorMovie(8, 8, 4),
-            new ActorMovie(9, 9, 11),
-            new ActorMovie(10, 10, 17),
-            new ActorMovie(11, 11, 45),
-            new ActorMovie(12, 12, 23),
-            new ActorMovie(13, 13, 44),
-            new ActorMovie(14, 14, 44),
-            new ActorMovie(15, 15, 46),
-            new ActorMovie(16, 1, 7),
-            new ActorMovie(17, 3, 9)
-        });
-    }
 
+    // ACTOR MOVIES 
+  
+    private void SeedActorMovies()
+{
+    ActorMovies.AddRange(new[]
+    {
+        // The Godfather
+        new ActorMovie(1, 1, 1), // Al Pacino
+        new ActorMovie(2, 2, 1), // De Niro (ok por saga contexto académico)
+
+        // The Dark Knight
+        new ActorMovie(3, 3, 3), // Bale
+        new ActorMovie(4, 4, 3), // Ledger
+
+        // Inception
+        new ActorMovie(5, 5, 10), // DiCaprio
+
+        // Fight Club
+        new ActorMovie(6, 6, 8), // Brad Pitt
+
+        // Forrest Gump
+        new ActorMovie(7, 7, 9), // Tom Hanks
+
+        // Shawshank
+        new ActorMovie(8, 8, 4), // Morgan Freeman
+
+        // Matrix
+        new ActorMovie(9, 9, 11), // Keanu Reeves
+
+        // Interstellar
+        new ActorMovie(10, 10, 17), // McConaughey
+
+        // Joker
+        new ActorMovie(11, 11, 45), // Phoenix
+
+        // Gladiator
+        new ActorMovie(12, 12, 23), // Crowe
+
+        // La La Land
+        new ActorMovie(13, 13, 44), // Gosling
+        new ActorMovie(14, 14, 44), // Emma Stone
+
+        // Avengers (Scarlett Johansson)
+        new ActorMovie(15, 15, 46),
+        new ActorMovie(16, 15, 47)
+    });
+}
     // =========================
     // IDS
     // =========================
