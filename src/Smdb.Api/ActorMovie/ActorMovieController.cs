@@ -1,10 +1,11 @@
-namespace Smdb.Api.ActorMovies;
-
-using System.Net;
 using System.Collections;
+using System.Collections.Specialized;
+using System.Net;
 using System.Text.Json;
 using Shared.Http;
 using Smdb.Core.ActorMovies;
+
+namespace Smdb.Api.ActorMovies;
 
 public class ActorMoviesController
 {
@@ -15,69 +16,52 @@ public class ActorMoviesController
         this.service = service;
     }
 
-    // =========================
-    // GET ALL
-    // =========================
     public async Task GetAll(HttpListenerRequest req, HttpListenerResponse res, Hashtable props, Func<Task> next)
     {
-        var result = await service.GetAll();
-        await JsonUtils.SendResultResponse(req, res, props, result);
+        var result = await service.ReadAll();
+        await JsonUtils.SendResultResponse(req, res, props, new Result<object>(result, 200));
         await next();
     }
 
-    // =========================
-    // GET BY ID
-    // =========================
-    public async Task GetById(HttpListenerRequest req, HttpListenerResponse res, Hashtable props, Func<Task> next)
-    {
-        int id = int.Parse((string)props["id"]);
-
-        var result = await service.GetById(id);
-
-        await JsonUtils.SendResultResponse(req, res, props, result);
-        await next();
-    }
-
-    // =========================
-    // CREATE
-    // =========================
     public async Task Create(HttpListenerRequest req, HttpListenerResponse res, Hashtable props, Func<Task> next)
     {
         var text = (string)props["req.text"]!;
-        var relation = JsonSerializer.Deserialize<ActorMovie>(text, JsonSerializerOptions.Web);
+        var data = JsonSerializer.Deserialize<ActorMovie>(text, JsonSerializerOptions.Web);
 
-        var result = await service.Create(relation!);
-
-        await JsonUtils.SendResultResponse(req, res, props, result);
+        var result = await service.Create(data!);
+        await JsonUtils.SendResultResponse(req, res, props, new Result<object>(result!, 201));
         await next();
     }
 
-    // =========================
-    // UPDATE
-    // =========================
-    public async Task Update(HttpListenerRequest req, HttpListenerResponse res, Hashtable props, Func<Task> next)
-    {
-        int id = int.Parse((string)props["id"]);
-        var text = (string)props["req.text"]!;
-
-        var relation = JsonSerializer.Deserialize<ActorMovie>(text, JsonSerializerOptions.Web);
-
-        var result = await service.Update(id, relation!);
-
-        await JsonUtils.SendResultResponse(req, res, props, result);
-        await next();
-    }
-
-    // =========================
-    // DELETE
-    // =========================
     public async Task Delete(HttpListenerRequest req, HttpListenerResponse res, Hashtable props, Func<Task> next)
     {
-        int id = int.Parse((string)props["id"]);
+        var uParams = (NameValueCollection)props["req.params"]!;
+        int id = int.TryParse(uParams["id"], out int i) ? i : -1;
 
         var result = await service.Delete(id);
+        await JsonUtils.SendResultResponse(req, res, props, new Result<object>(result!, 200));
+        await next();
+    }
 
-        await JsonUtils.SendResultResponse(req, res, props, result);
+    // RELACIONES
+
+    public async Task GetActorsByMovie(HttpListenerRequest req, HttpListenerResponse res, Hashtable props, Func<Task> next)
+    {
+        var uParams = (NameValueCollection)props["req.params"]!;
+        int movieId = int.TryParse(uParams["movieId"], out int i) ? i : -1;
+
+        var result = await service.GetActorsByMovie(movieId);
+        await JsonUtils.SendResultResponse(req, res, props, new Result<object>(result, 200));
+        await next();
+    }
+
+    public async Task GetMoviesByActor(HttpListenerRequest req, HttpListenerResponse res, Hashtable props, Func<Task> next)
+    {
+        var uParams = (NameValueCollection)props["req.params"]!;
+        int actorId = int.TryParse(uParams["actorId"], out int i) ? i : -1;
+
+        var result = await service.GetMoviesByActor(actorId);
+        await JsonUtils.SendResultResponse(req, res, props, new Result<object>(result, 200));
         await next();
     }
 }

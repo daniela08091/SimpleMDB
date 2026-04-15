@@ -1,153 +1,49 @@
-using Shared.Http;
-using System.Net;
 using Smdb.Core.Db;
 
 namespace Smdb.Core.ActorMovies;
 
 public class DefaultActorMovieService : IActorMovieService
 {
-    private IActorMovieRepository repository;
+    private IActorMovieRepository repo;
     private MemoryDatabase db;
 
-    public DefaultActorMovieService(IActorMovieRepository repository, MemoryDatabase db)
+    public DefaultActorMovieService(IActorMovieRepository repo, MemoryDatabase db)
     {
-        this.repository = repository;
+        this.repo = repo;
         this.db = db;
     }
 
-    // =========================
-    // GET ALL
-    // =========================
-    public async Task<Result<List<ActorMovie>>> GetAll()
+    public async Task<List<object>> GetActorsByMovie(int movieId)
     {
-        var relations = await repository.GetAll();
+        var result = db.ActorMovies
+            .Where(am => am.MovieId == movieId)
+            .Join(db.Actors,
+                am => am.ActorId,
+                a => a.Id,
+                (am, a) => new { a.Id, a.Name });
 
-        return relations == null
-            ? new Result<List<ActorMovie>>(
-                new Exception("Could not retrieve actor-movie relations."),
-                (int)HttpStatusCode.NotFound)
-            : new Result<List<ActorMovie>>(relations, (int)HttpStatusCode.OK);
+        return await Task.FromResult(result.Cast<object>().ToList());
     }
 
-    // =========================
-    // GET BY ID
-    // =========================
-    public async Task<Result<ActorMovie>> GetById(int id)
+    public async Task<List<object>> GetMoviesByActor(int actorId)
     {
-        var relation = await repository.GetById(id);
+        var result = db.ActorMovies
+            .Where(am => am.ActorId == actorId)
+            .Join(db.Movies,
+                am => am.MovieId,
+                m => m.Id,
+                (am, m) => new { m.Id, m.Title, m.Year });
 
-        return relation == null
-            ? new Result<ActorMovie>(
-                new Exception($"Relation {id} not found."),
-                (int)HttpStatusCode.NotFound)
-            : new Result<ActorMovie>(relation, (int)HttpStatusCode.OK);
+        return await Task.FromResult(result.Cast<object>().ToList());
     }
 
-    // =========================
-    // CREATE
-    // =========================
-    public async Task<Result<ActorMovie>> Create(ActorMovie relation)
-    {
-        var validationResult = ValidateRelation(relation);
-        if (validationResult != null)
-            return validationResult;
+    public Task<List<ActorMovie>> ReadAll() => repo.ReadAll();
 
-        var created = await repository.Create(relation);
+    public Task<ActorMovie?> Read(int id) => repo.Read(id);
 
-        return created == null
-            ? new Result<ActorMovie>(
-                new Exception("Could not create relation."),
-                (int)HttpStatusCode.BadRequest)
-            : new Result<ActorMovie>(created, (int)HttpStatusCode.Created);
-    }
+    public Task<ActorMovie?> Create(ActorMovie actorMovie) => repo.Create(actorMovie);
 
-    // =========================
-    // UPDATE
-    // =========================
-    public async Task<Result<ActorMovie>> Update(int id, ActorMovie relation)
-    {
-        var existing = await repository.GetById(id);
+    public Task<ActorMovie?> Update(int id, ActorMovie actorMovie) => repo.Update(id, actorMovie);
 
-        if (existing == null)
-        {
-            return new Result<ActorMovie>(
-                new Exception($"Relation {id} not found."),
-                (int)HttpStatusCode.NotFound);
-        }
-
-        var validationResult = ValidateRelation(relation);
-        if (validationResult != null)
-            return validationResult;
-
-        relation.Id = id;
-
-        var updated = await repository.Update(id, relation);
-
-        return updated == null
-            ? new Result<ActorMovie>(
-                new Exception("Could not update relation."),
-                (int)HttpStatusCode.BadRequest)
-            : new Result<ActorMovie>(updated, (int)HttpStatusCode.OK);
-    }
-
-    // =========================
-    // DELETE
-    // =========================
-    public async Task<Result<bool>> Delete(int id)
-    {
-        var existing = await repository.GetById(id);
-
-        if (existing == null)
-        {
-            return new Result<bool>(
-                new Exception($"Relation {id} not found."),
-                (int)HttpStatusCode.NotFound);
-        }
-
-        var deleted = await repository.Delete(id);
-
-        return new Result<bool>(deleted, (int)HttpStatusCode.OK);
-    }
-
-    // =========================
-    // VALIDATION
-    // =========================
-    private Result<ActorMovie>? ValidateRelation(ActorMovie relation)
-    {
-        if (relation == null)
-        {
-            return new Result<ActorMovie>(
-                new Exception("Relation payload is required."),
-                (int)HttpStatusCode.BadRequest);
-        }
-
-        var actorExists = db.Actors.Any(a => a.Id == relation.ActorId);
-        if (!actorExists)
-        {
-            return new Result<ActorMovie>(
-                new Exception($"Actor {relation.ActorId} does not exist."),
-                (int)HttpStatusCode.BadRequest);
-        }
-
-        var movieExists = db.Movies.Any(m => m.Id == relation.MovieId);
-        if (!movieExists)
-        {
-            return new Result<ActorMovie>(
-                new Exception($"Movie {relation.MovieId} does not exist."),
-                (int)HttpStatusCode.BadRequest);
-        }
-
-        var alreadyExists = db.ActorMovies.Any(am =>
-            am.ActorId == relation.ActorId &&
-            am.MovieId == relation.MovieId);
-
-        if (alreadyExists)
-        {
-            return new Result<ActorMovie>(
-                new Exception("This relation already exists."),
-                (int)HttpStatusCode.BadRequest);
-        }
-
-        return null;
-    }
+    public Task<ActorMovie?> Delete(int id) => repo.Delete(id);
 }
