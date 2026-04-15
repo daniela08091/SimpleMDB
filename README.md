@@ -11,7 +11,7 @@ Frontend and backend website to add, view, edit, and delete movies.
 
 
 
-
+<br>
 
 
 
@@ -21,7 +21,7 @@ Frontend and backend website to add, view, edit, and delete movies.
 
 
 
-
+<br>
 
 
 
