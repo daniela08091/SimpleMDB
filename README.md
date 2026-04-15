@@ -32,23 +32,24 @@ Frontend and backend website to add, view, edit, and delete movies.
 
 
 # How to use?
-1.Go to a folder and open the terminal in it.
-2.Clone repository (SharedLibrary): git clone https://github.com/daniela08091/SharedLibrary.git
-3.Clone repository (Simple MDB): git clone https://github.com/daniela08091/SimpleMDB.git
-3.Look for the SimpleMDB folder and open it in VisualStudio Code.
-4.Open a terminal in VisualStudio Code and type this: cd src\Smdb.Api
-5.Press Enter
-6.Next, you should type: dotnet run
-7.Open another terminal in Visual Studio Code without closing the previous one.
-8.You should type: cd src\Smdb.Csr
-9.Press Enter
-10.Next, you should type: dotnet run
-11.You'll see the message “http://localhost:3030/.” Please press Ctrl + click.
-12.Then press the buttons as indicated on the graphical interface.
+1. Go to a folder and open the terminal in it.
+2. Clone repository (SharedLibrary): git clone https://github.com/daniela08091/SharedLibrary.git
+3. Clone repository (Simple MDB): git clone https://github.com/daniela08091/SimpleMDB.git
+4. Look for the SimpleMDB folder and open it in VisualStudio Code.
+5. Open a terminal in VisualStudio Code and type this: cd src\Smdb.Api
+6. Press Enter
+7. Next, you should type: dotnet run
+8. Open another terminal in Visual Studio Code without closing the previous one.
+9. You should type: cd src\Smdb.Csr
+10. Press Enter
+11. Next, you should type: dotnet run
+12. You'll see the message “http://localhost:3030/.” Please press Ctrl + click.
+13. Then press the buttons as indicated on the graphical interface.
+
 
 # Collaborators:
-Henry Bruckman Vargas university professor (Lead developer and owner of SMDB)
-ChatGPT (ChatGPT did design CSS, actormovie among others)
++ Henry Bruckman Vargas university professor (Lead developer and owner of SMDB)
++ ChatGPT (ChatGPT did design CSS, actormovie among others)
 
 # License:
 MIT License
